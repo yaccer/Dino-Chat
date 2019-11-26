@@ -16,9 +16,23 @@
     src: url("assets/roboto_condensed_regular.ttf");
 }
 
-/* 
+/*
     == GENERAL ==
 */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #ffffff44;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff;
+}
 
 * {
     box-sizing: border-box;
@@ -51,7 +65,7 @@ body {
 }
 
 .blur {
-    background: rgba(255, 255, 255, .15);  
+    background: rgba(255, 255, 255, .15);
     backdrop-filter: blur(5px);
     height: 100%;
     width: 100%;
@@ -118,7 +132,7 @@ footer p {
     transform: translate(-50%, -50%);
 }
 
-/* 
+/*
     == CHAT ==
 */
 
@@ -127,6 +141,13 @@ footer p {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.chat {
+    padding-right: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 750px !important;
 }
 
 nav {
@@ -178,7 +199,7 @@ input {
 
 .message {
     margin-top: 5px;
-    display: inline-block;  
+    display: inline-block;
     padding: 15px;
     position: relative;
 }
