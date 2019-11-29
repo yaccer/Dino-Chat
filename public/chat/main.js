@@ -167,6 +167,7 @@ const suggestions = document.getElementsByClassName("suggestions")[0];
 for (const suggestion of suggestions.children) {
     suggestion.addEventListener("click", () => {
         input.value = suggestion.innerText;
+        input.focus();
     });
 }
 
@@ -175,5 +176,6 @@ const keywords = document.getElementsByClassName("list")[0];
 for (const keyword of keywords.children) {
     keyword.addEventListener("click", () => {
         input.value = keyword.innerText;
+        input.focus();
     });
 }
