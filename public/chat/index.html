@@ -8,6 +8,8 @@
     <title>Dino Chat</title>
 </head>
 <body>
+    <p class="closeBtn">&times;</p>
+
     <div class="sidebar">
         <section>
             <img id="profileImage"/>
@@ -15,6 +17,7 @@
             <h1 id="profileName"></h1>
         </section>
         <section>
+            <h6>USE THESE</h6>
             <h2>KEYWORDS</h2>
             <div class="list">
                 <p>Eat</p>
@@ -25,6 +28,10 @@
     </div>
 
     <main>
+        <div class="countdown">
+            <h6>CHAT EXPIRING IN</h6>
+            <p id="currentSec">0</p>
+        </div>
         <section class="chat"></section>
         <section class="input-wrapper">
             <input class="userInput" type="text" placeholder="SEND MESSAGE"/>

@@ -34,27 +34,46 @@ const chatbox = document.getElementsByClassName("chat")[0];
 const input = document.getElementsByClassName("userInput")[0];
 const sendButton = document.getElementsByClassName("sendMessage")[0];
 
-const responses = {
+const trexResponses = {
     "hello": [
         "RAWRR!",
         "RR- What's up?"
     ],
-    "eat": [
-        "I eat X",
-        "I prefer to eat X",
-        "I really like to eat X"
+    "planet": [
+        "To stop more dinos going extinct, throw away your trash to stop polution."
     ],
-    "dislike": [
-        "I dislike X",
-        "I don't prefer to eat X",
-        "I really dislike to eat X"
+    "fact": [
+        "Did you know a T-Rex can live up to 30 years?"
+    ],
+    "eat": [
+        "I eat meat",
+        "I prefer to eat meat",
+        "I really like to eat meat"
     ]
 };
 
-const responder1 = new Responder("T-REX", responses, "/assets/trex.gif");
-const responder2 = new Responder("Brontosaurus", responses, "/assets/bronto.gif");
+const brontoResponses = {
+    "hello": [
+        "RAWRR!",
+        "RR- What's up?"
+    ],
+    "planet": [
+        "To stop more dinos going extinct, throw away your trash to stop polution."
+    ],
+    "fact": [
+        "I am a Brantosaurus, I can grow upto 90 feet tall"
+    ],
+    "eat": [
+        "I eat puzzlegrass",
+        "I prefer to eat puzzlegrass",
+        "I really like to eat puzzlegrass"
+    ]
+};
 
-const responders = [responder1, responder2];
+const t_rex = new Responder("T-REX", trexResponses, "/assets/trex.gif");
+const bronto = new Responder("Brontosaurus", brontoResponses, "/assets/bronto.gif");
+
+const responders = [t_rex, bronto];
 
 const currentResponder = responders[document.cookie.replace("randomInt=", "")];
 currentName.innerText = currentResponder.name;
@@ -112,3 +131,32 @@ async function sendMessage() {
     const lastMessage = chatbox.children[chatbox.children.length - 1];
     lastMessage.scrollIntoView({behavior: "smooth"});
 }
+
+const closeBtn = document.getElementsByClassName("closeBtn")[0];
+
+closeBtn.addEventListener("click", () => {
+    window.location.href = "/";
+});
+
+const countdown = document.getElementsByClassName("countdown")[0];
+const currentSecond = document.getElementById("currentSec");
+
+let currentSec = 10;
+
+const counter = setInterval(() => {
+    currentSec -= 1;
+
+    if (currentSec <= 5) {
+        countdown.style.opacity = 1;
+    } else {
+        countdown.style.opacity = 0;
+    }
+
+    if (currentSec === 0) {
+        window.location.href = "/";
+    }
+
+    currentSecond.innerText = currentSec;
+}, 1000);
+
+document.addEventListener("mousemove", () => currentSec = 10);

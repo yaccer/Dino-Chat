@@ -40,6 +40,47 @@ img {
     border-radius: 10px;
 }
 
+h6 {
+    font-family: "Roboto Condensed Regular";
+    font-weight: normal;
+}
+
+/*
+    * === CLOSE BUTTON ===
+*/
+
+.closeBtn {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    cursor: pointer;
+    font-size: 2em;
+    transition: color 0.2s ease-in-out;
+}
+
+.closeBtn:hover {
+    color: #ff6961;
+}
+
+/*
+    * === COUNTDOWN ===
+*/
+
+.countdown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #ffffff44;
+    font-size: 2em;
+    opacity: 0;
+}
+
+.countdown p {
+    font-size: 5em;
+}
+
 /*
     * === SIDEBAR ===
 */
@@ -67,12 +108,14 @@ img {
     padding: 20px 0;
     border-radius: 10px;
     background: #ffffff22;
-    transition: background 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    transition-property: background, transform;
 }
 
 .sidebar .list p:hover {
     background: #ffffff44;
     cursor: not-allowed;
+    transform: scale(0.95);
 }
 
 /*
@@ -80,6 +123,7 @@ img {
 */
 
 main {
+    position: relative;
     margin-left: 250px;
     height: 100%;
     display: flex;
@@ -136,6 +180,7 @@ main {
 }
 
 .input-wrapper {
+    position: relative;
     padding: 20px;
     background: #ffffff22;
     display: flex;
@@ -150,10 +195,17 @@ input {
     color: #ffffff;
     outline: none;
     border-radius: 10px;
+    transition: 0.2s ease-in-out;
+    transition-property: background, color;
 }
 
 input::placeholder {
-    color: #ffffff;
+    color: #ffffff55;
+    font-family: "Roboto Black";
+}
+
+input:focus {
+    background: #ffffff33;
 }
 
 .input-wrapper button {
@@ -164,9 +216,11 @@ input::placeholder {
     color: #ffffff;
     border-radius: 10px;
     cursor: pointer;
-    transition: background 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    transition-property: background, transform;
 }
 
 .input-wrapper button:hover {
     background: #ffffff44;
+    transform: scale(0.95);
 }
