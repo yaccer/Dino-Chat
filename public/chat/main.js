@@ -160,3 +160,13 @@ const counter = setInterval(() => {
 }, 1000);
 
 document.addEventListener("mousemove", () => currentSec = 10);
+document.addEventListener("keypress", () => currentSec = 10);
+
+
+const keywords = document.getElementsByClassName("list")[0];
+
+for (const keyword of keywords.children) {
+    keyword.addEventListener("click", () => {
+        input.value += keyword.innerText;
+    });
+}
