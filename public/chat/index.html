@@ -8,51 +8,30 @@
     <title>Dino Chat</title>
 </head>
 <body>
-    <div class="chatbox">
-        <div class="sidebar">
-            <div class="blur"></div>
-            <header>
-                <h1>KEYWORDS</h1>
-            </header>
+    <div class="sidebar">
+        <section>
+            <img id="profileImage"/>
+            <h6>CHATTING TO</h6>
+            <h1 id="profileName"></h1>
+        </section>
+        <section>
+            <h2>KEYWORDS</h2>
             <div class="list">
-                <div class="item">
-                    <div class="blur"></div>
-                    <p>Eat</p>
-                </div>
-                <div class="item">
-                    <div class="blur"></div>
-                    <p>Fun Fact</p>
-                </div>
-                <div class="item">
-                    <div class="blur"></div>
-                    <p>Save Planet</p>
-                </div>
+                <p>Eat</p>
+                <p>Fun Fact</p>
+                <p>Save Planet</p>
             </div>
-            <footer>
-                <p>Type a question using these words:</p>
-            </footer>
-        </div>
-        <div class="content">
-            <nav>
-                <div class="profile">
-                    <img src="/assets/profile_picture.jpg"/>
-                    <p id="profileName"></p>
-                </div>
-            </nav>
-            <div class="chat"></div>
-            <div class="input-wrapper">
-                <div class="blur"></div>
-                <div class="input-container">
-                    <div class="blur"></div>
-                    <input class="userInput" type="text" placeholder="Type here"/>
-                </div>
-                <div class="enter-key">
-                    <div class="blur"></div>
-                    <button class="sendMessage">SEND</button>
-                </div>
-            </div>
-        </div>
+        </section>
     </div>
+
+    <main>
+        <section class="chat"></section>
+        <section class="input-wrapper">
+            <input class="userInput" type="text" placeholder="SEND MESSAGE"/>
+            <button class="sendMessage">SEND</button>
+        </section>
+    </main>
+
     <script src="/chat/main.js"></script>
 </body>
 </html>

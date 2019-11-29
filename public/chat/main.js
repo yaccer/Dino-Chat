@@ -4,9 +4,10 @@ class Responder {
      * @param {String} name - name of the responder.
      * @param {Object} responses - object of responses { keyword: array of strings }
      */
-    constructor(name, responses) {
+    constructor(name, responses, src) {
         this.name = name;
         this.responses = responses;
+        this.src = src;
     }
 
     /**
@@ -28,6 +29,7 @@ class Responder {
 }
 
 const currentName = document.getElementById("profileName");
+const currentImage = document.getElementById("profileImage");
 const chatbox = document.getElementsByClassName("chat")[0];
 const input = document.getElementsByClassName("userInput")[0];
 const sendButton = document.getElementsByClassName("sendMessage")[0];
@@ -49,13 +51,14 @@ const responses = {
     ]
 };
 
-const responder1 = new Responder("Responder 1", responses);
-const responder2 = new Responder("Responder 2", responses);
+const responder1 = new Responder("T-REX", responses, "/assets/trex.gif");
+const responder2 = new Responder("Brontosaurus", responses, "/assets/bronto.gif");
 
 const responders = [responder1, responder2];
 
 const currentResponder = responders[document.cookie.replace("randomInt=", "")];
 currentName.innerText = currentResponder.name;
+currentImage.src = currentResponder.src;
 
 sendButton.addEventListener("click", sendMessage);
 
@@ -67,13 +70,17 @@ input.addEventListener("keyup", (e) => {
 
 async function sendMessage() {
     const response = currentResponder.generateResponse(input.value);
+    let hh, mm, ss;
 
-    // message of user.
+    hh = ("0" + new Date().getHours()).slice(-2);
+    mm = ("0" + new Date().getMinutes()).slice(-2);
+    ss = ("0" + new Date().getSeconds()).slice(-2);
+
+    // message from you.
     chatbox.innerHTML += [
         "<div class='message-wrapper' data-side='right'>",
-        "<p>YOU</p>",
+        `<p class='sender'><span class='timestamp'>${hh}:${mm}:${ss}</span> - YOU</p>`,
         "<div class='message'>",
-        "<div class='blur'></div>",
         `<p>${input.value}</p>`,
         "</div>",
         "</div>"
@@ -88,12 +95,15 @@ async function sendMessage() {
     // waits 1000ms before sending response.
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // message of dino bot.
+    hh = ("0" + new Date().getHours()).slice(-2);
+    mm = ("0" + new Date().getMinutes()).slice(-2);
+    ss = ("0" + new Date().getSeconds()).slice(-2);
+
+    // message of from dino bot.
     chatbox.innerHTML += [
         "<div class='message-wrapper' data-side='left'>",
-        `<p>${currentResponder.name}</p>`,
+        `<p class='sender'>${currentResponder.name} - <span class='timestamp'>${hh}:${mm}:${ss}</span></p>`,
         "<div class='message'>",
-        "<div class='blur'></div>",
         `<p>${response}</p>`,
         "</div>",
         "</div>"
