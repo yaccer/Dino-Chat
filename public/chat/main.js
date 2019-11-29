@@ -40,7 +40,7 @@ const trexResponses = {
         "RR- What's up?"
     ],
     "planet": [
-        "To stop more dinos going extinct, throw away your trash to stop polution."
+        "To stop more more endangered species from going extinct, throw away your trash to stop polution."
     ],
     "fact": [
         "Did you know a T-Rex can live up to 30 years?"
