@@ -141,7 +141,7 @@ closeBtn.addEventListener("click", () => {
 const countdown = document.getElementsByClassName("countdown")[0];
 const currentSecond = document.getElementById("currentSec");
 
-let currentSec = 10;
+let currentSec = 20;
 
 const counter = setInterval(() => {
     currentSec -= 1;
@@ -162,11 +162,18 @@ const counter = setInterval(() => {
 document.addEventListener("mousemove", () => currentSec = 10);
 document.addEventListener("keypress", () => currentSec = 10);
 
+const suggestions = document.getElementsByClassName("suggestions")[0];
+
+for (const suggestion of suggestions.children) {
+    suggestion.addEventListener("click", () => {
+        input.value = suggestion.innerText;
+    });
+}
 
 const keywords = document.getElementsByClassName("list")[0];
 
 for (const keyword of keywords.children) {
     keyword.addEventListener("click", () => {
-        input.value += keyword.innerText;
+        input.value = keyword.innerText;
     });
 }
