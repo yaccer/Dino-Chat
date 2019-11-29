@@ -56,6 +56,7 @@ h6 {
     cursor: pointer;
     font-size: 2em;
     transition: color 0.2s ease-in-out;
+    z-index: 1;
 }
 
 .closeBtn:hover {
@@ -108,13 +109,13 @@ h6 {
     padding: 20px 0;
     border-radius: 10px;
     background: #ffffff22;
+    cursor: pointer;
     transition: 0.2s ease-in-out;
     transition-property: background, transform;
 }
 
 .sidebar .list p:hover {
     background: #ffffff44;
-    cursor: not-allowed;
     transform: scale(0.95);
 }
 
