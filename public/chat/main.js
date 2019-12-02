@@ -1,3 +1,42 @@
+const $ = (e) => document.getElementsByClassName(e);
+
+const chat = $("chat")[0];
+
+class Message {
+    /**
+     * @returns {String} - formatted time stamp.
+     */
+    static timeStamp() {
+        const { hh, mm, ss } = {
+            hh: ("0" + new Date().getHours()).slice(-2),
+            mm: ("0" + new Date().getMinutes()).slice(-2),
+            ss: ("0" + new Date().getSeconds()).slice(-2)
+        };
+
+        return `${hh}:${mm}:${ss}`;
+    }
+
+    /**
+     * Send a message in chat.
+     * @param {String} name - author of message name.
+     * @param {String} message - message body.
+     * @param {String} side - wether the message should appear on the left or right.
+     */
+    static send(name, message, side) {
+        chat.innerHTML += [
+            `<div class='message-wrapper' data-side='${side}'>`,
+            `<p class='sender'>${name} - <span class='timestamp'>${this.timeStamp()}</span></p>`,
+            "<div class='message'>",
+            `<p>${message}</p>`,
+            "</div>",
+            "</div>"
+        ].join("");
+
+        const lastMessage = chat.children[chat.children.length - 1];
+        lastMessage.scrollIntoView({behavior: "smooth"});
+    }
+}
+
 class Responder {
     /**
      * Create a responder.
@@ -28,13 +67,7 @@ class Responder {
     }
 }
 
-const currentName = document.getElementById("profileName");
-const currentImage = document.getElementById("profileImage");
-const chatbox = document.getElementsByClassName("chat")[0];
-const input = document.getElementsByClassName("userInput")[0];
-const sendButton = document.getElementsByClassName("sendMessage")[0];
-
-const trexResponses = {
+const defaultResponses = {
     "hello": [
         "RAWRR!",
         "RR- What's up?"
@@ -42,6 +75,13 @@ const trexResponses = {
     "planet": [
         "To stop more more endangered species from going extinct, throw away your trash to stop polution."
     ],
+    "gay": [
+        "ThAt iS hOmOpHoBiC"
+    ]
+};
+
+const trexResponses = {
+    ...defaultResponses,
     "fact": [
         "Did you know a T-Rex can live up to 30 years?"
     ],
@@ -53,13 +93,7 @@ const trexResponses = {
 };
 
 const brontoResponses = {
-    "hello": [
-        "RAWRR!",
-        "RR- What's up?"
-    ],
-    "planet": [
-        "To stop more dinos going extinct, throw away your trash to stop polution."
-    ],
+    ...defaultResponses,
     "fact": [
         "I am a Brantosaurus, I can grow upto 90 feet tall"
     ],
@@ -70,67 +104,46 @@ const brontoResponses = {
     ]
 };
 
-const t_rex = new Responder("T-REX", trexResponses, "/assets/trex.gif");
-const bronto = new Responder("Brontosaurus", brontoResponses, "/assets/bronto.gif");
-
+const t_rex = new Responder("Terry T-REX", trexResponses, "/assets/trex.gif");
+const bronto = new Responder("Barry Brontosaurus", brontoResponses, "/assets/bronto.gif");
 const responders = [t_rex, bronto];
 
 const currentResponder = responders[document.cookie.replace("randomInt=", "")];
-currentName.innerText = currentResponder.name;
-currentImage.src = currentResponder.src;
 
-sendButton.addEventListener("click", sendMessage);
+for (const element of $("botName")) {
+    element.innerText = currentResponder.name;
+}
 
-input.addEventListener("keyup", (e) => {
+for (const element of $("botImage")) {
+    element.src = currentResponder.src;
+}
+
+
+const userInput = $("userInput")[0];
+const sendMessageButton = $("sendMessageButton")[0];
+
+// called when 'enter' key or 'send' button is pressed
+async function sendMessage() {
+    const response = currentResponder.generateResponse(userInput.value);
+
+    Message.send("YOU", userInput.value, "right");
+    userInput.value = "";
+
+    // waits 1000ms before sending response.
+    await new Promise(_ => setTimeout(_, 750));
+
+    Message.send(currentResponder.name, response, "left");
+}
+
+sendMessageButton.addEventListener("click", sendMessage);
+
+userInput.addEventListener("keyup", (e) => {
     if (e.key === "Enter") {
         sendMessage();
     }
 });
 
-async function sendMessage() {
-    const response = currentResponder.generateResponse(input.value);
-    let hh, mm, ss;
-
-    hh = ("0" + new Date().getHours()).slice(-2);
-    mm = ("0" + new Date().getMinutes()).slice(-2);
-    ss = ("0" + new Date().getSeconds()).slice(-2);
-
-    // message from you.
-    chatbox.innerHTML += [
-        "<div class='message-wrapper' data-side='right'>",
-        `<p class='sender'><span class='timestamp'>${hh}:${mm}:${ss}</span> - YOU</p>`,
-        "<div class='message'>",
-        `<p>${input.value}</p>`,
-        "</div>",
-        "</div>"
-    ].join("");
-
-    const yourMessage = chatbox.children[chatbox.children.length - 1];
-    yourMessage.scrollIntoView({behavior: "smooth"});
-
-    // set input to empty for new message.
-    input.value = "";
-
-    // waits 1000ms before sending response.
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    hh = ("0" + new Date().getHours()).slice(-2);
-    mm = ("0" + new Date().getMinutes()).slice(-2);
-    ss = ("0" + new Date().getSeconds()).slice(-2);
-
-    // message of from dino bot.
-    chatbox.innerHTML += [
-        "<div class='message-wrapper' data-side='left'>",
-        `<p class='sender'>${currentResponder.name} - <span class='timestamp'>${hh}:${mm}:${ss}</span></p>`,
-        "<div class='message'>",
-        `<p>${response}</p>`,
-        "</div>",
-        "</div>"
-    ].join("");
-
-    const lastMessage = chatbox.children[chatbox.children.length - 1];
-    lastMessage.scrollIntoView({behavior: "smooth"});
-}
+const beginWith = document.getElementById("beginWith");
 
 const closeBtn = document.getElementsByClassName("closeBtn")[0];
 
@@ -166,8 +179,8 @@ const suggestions = document.getElementsByClassName("suggestions")[0];
 
 for (const suggestion of suggestions.children) {
     suggestion.addEventListener("click", () => {
-        input.value = suggestion.innerText;
-        input.focus();
+        userInput.value = suggestion.innerText;
+        userInput.focus();
     });
 }
 
@@ -175,7 +188,7 @@ const keywords = document.getElementsByClassName("list")[0];
 
 for (const keyword of keywords.children) {
     keyword.addEventListener("click", () => {
-        input.value = keyword.innerText;
-        input.focus();
+        userInput.value = keyword.innerText;
+        userInput.focus();
     });
 }

@@ -133,7 +133,8 @@ main {
 }
 
 .chat {
-    padding: 50px;
+    position: relative;
+    padding: 100px 50px;
     height: 100%;
     overflow-y: scroll;
 }
@@ -146,9 +147,21 @@ main {
     background: #ffffff;
     border-radius: 10px;
 }
+
 .chat::-webkit-scrollbar-track {
     border-radius: 10px;
     background: #ffffff22;
+}
+
+.chat .state {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff44;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.5em;
 }
 
 .message-wrapper {
@@ -257,4 +270,13 @@ input:focus {
 .input-wrapper button:hover {
     background: #ffffff44;
     transform: scale(0.95);
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
