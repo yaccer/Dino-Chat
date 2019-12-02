@@ -73,7 +73,7 @@ const defaultResponses = {
         "RR- What's up?"
     ],
     "planet": [
-        "To stop more more endangered species from going extinct, throw away your trash to stop polution."
+        "To stop more endangered species from going extinct, throw away your trash to stop polution."
     ],
     "gay": [
         "ThAt iS hOmOpHoBiC"
@@ -148,7 +148,7 @@ const beginWith = document.getElementById("beginWith");
 const closeBtn = document.getElementsByClassName("closeBtn")[0];
 
 closeBtn.addEventListener("click", () => {
-    window.location.href = "/";
+    window.location.href = "/end";
 });
 
 const countdown = document.getElementsByClassName("countdown")[0];
@@ -166,7 +166,7 @@ const counter = setInterval(() => {
     }
 
     if (currentSec === 0) {
-        window.location.href = "/";
+        window.location.href = "/end";
     }
 
     currentSecond.innerText = currentSec;
