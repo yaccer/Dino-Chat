@@ -51,6 +51,24 @@ footer {
 }
 
 /*
+    * === CLOSE BUTTON ===
+*/
+
+.closeBtn {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    cursor: pointer;
+    font-size: 2em;
+    transition: color 0.2s ease-in-out;
+    z-index: 1;
+}
+
+.closeBtn:hover {
+    color: #ff6961;
+}
+
+/*
     * === KEY FRAMES ===
 */
 

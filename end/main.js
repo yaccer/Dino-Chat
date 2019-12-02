@@ -19,3 +19,9 @@ const counter = setInterval(() => {
 
 document.addEventListener("mousemove", () => currentSec = 10);
 document.addEventListener("keypress", () => currentSec = 10);
+
+const closeBtn = document.getElementsByClassName("closeBtn")[0];
+
+closeBtn.addEventListener("click", () => {
+    window.location.href = "/";
+});
