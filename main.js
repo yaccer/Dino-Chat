@@ -1,23 +1,18 @@
-const path = require("path");
-const express = require("express");
-const app = express();
+const randomInt = Math.floor(Math.random() * 2);
+document.cookie = `randomInt=${randomInt}`;
 
-app.use(express.static("public"));
+const body = document.querySelector("body");
+const dino = document.getElementById("dino");
 
-app.get("/", ({res}) => {
-    res.sendFile("index.html");
-});
+if (randomInt === 0) {
+    body.style.background = "#cbcbcb";
+    dino.src = "/assets/trex.gif";
+} else {
+    body.style.background = "#ffffff";
+    dino.src = "/assets/bronto.gif";
+    dino.style.border = "solid 2px #000000";
+}
 
-app.get("/chat", ({res}) => {
-    const options = {root: path.join(__dirname, "./public")};
-    res.sendFile("/chat/index.html", options);
-});
-
-app.get("/end", ({res}) => {
-    const options = {root: path.join(__dirname, "./public")};
-    res.sendFile("/end/index.html", options);
-});
-
-app.listen(3000 , _ => {
-    console.log("[SERVER] STARTED ON PORT 3000.");
+document.addEventListener("click", async () => {
+    window.location.href = "/chat";
 });
