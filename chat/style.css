@@ -247,7 +247,7 @@ input {
 }
 
 input::placeholder {
-    color: #ffffff55;
+    color: #ffffff;
     font-family: "Roboto Black";
 }
 
