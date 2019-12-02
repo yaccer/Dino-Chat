@@ -178,8 +178,16 @@ document.addEventListener("keypress", () => currentSec = 10);
 const suggestions = document.getElementsByClassName("suggestions")[0];
 
 for (const suggestion of suggestions.children) {
-    suggestion.addEventListener("click", () => {
-        userInput.value = suggestion.innerText;
+    suggestion.addEventListener("click", async () => {
+        const response = currentResponder.generateResponse(suggestion.innerText);
+
+        Message.send("YOU", suggestion.innerText, "right");
+
+        // waits 1000ms before sending response.
+        await new Promise(_ => setTimeout(_, 750));
+
+        Message.send(currentResponder.name, response, "left");
+
         userInput.focus();
     });
 }
@@ -187,8 +195,16 @@ for (const suggestion of suggestions.children) {
 const keywords = document.getElementsByClassName("list")[0];
 
 for (const keyword of keywords.children) {
-    keyword.addEventListener("click", () => {
-        userInput.value = keyword.innerText;
+    keyword.addEventListener("click", async () => {
+        const response = currentResponder.generateResponse(keyword.innerText);
+
+        Message.send("YOU", keyword.innerText, "right");
+
+        // waits 1000ms before sending response.
+        await new Promise(_ => setTimeout(_, 750));
+
+        Message.send(currentResponder.name, response, "left");
+
         userInput.focus();
     });
 }
