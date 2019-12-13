@@ -35,6 +35,24 @@ class Message {
         const lastMessage = chat.children[chat.children.length - 1];
         lastMessage.scrollIntoView({behavior: "smooth"});
     }
+
+    /**
+     * Send a message in chat.
+     * @param {String} path - source file of image.
+     * @param {String} side - wether the message should appear on the left or right.
+     */
+    static sendImage(path, side) {
+        chat.innerHTML += [
+            `<div class='message-wrapper' data-side='${side}'>`,
+            "<div class='message'>",
+            `<img src="${path}"></img>`,
+            "</div>",
+            "</div>"
+        ].join("");
+
+        const lastMessage = chat.children[chat.children.length - 1];
+        lastMessage.scrollIntoView({behavior: "smooth"});
+    }
 }
 
 class Responder {
@@ -69,38 +87,42 @@ class Responder {
 
 const defaultResponses = {
     "hello": [
-        "RAWRR!",
-        "RR- What's up?"
+        { response: "RAWRR!" },
+        { response: "RR- What's up?" }
     ],
     "planet": [
-        "To stop more endangered species from going extinct, throw away your trash to stop polution."
-    ],
-    "gay": [
-        "ThAt iS hOmOpHoBiC"
+        { response: "To stop more endangered species from going extinct, throw away your trash to stop polution." }
     ]
 };
 
 const trexResponses = {
     ...defaultResponses,
     "fact": [
-        "Did you know a T-Rex can live up to 30 years?"
+        { response: "Did you know a T-Rex can live up to 30 years?" }
     ],
     "eat": [
-        "I eat meat",
-        "I prefer to eat meat",
-        "I really like to eat meat"
+        {
+            response: "I eat meat",
+            image: "/assets/juicy_meat.jpeg"
+        },
+        {
+            response: "I prefer to eat meat"
+        },
+        {
+            response: "I really like to eat meat"
+        }
     ]
 };
 
 const brontoResponses = {
     ...defaultResponses,
     "fact": [
-        "I am a Brantosaurus, I can grow upto 90 feet tall"
+        { response: "I am a Brantosaurus, I can grow upto 90 feet tall" }
     ],
     "eat": [
-        "I eat puzzlegrass",
-        "I prefer to eat puzzlegrass",
-        "I really like to eat puzzlegrass"
+        { response: "I eat puzzlegrass" },
+        { response: "I prefer to eat puzzlegrass" },
+        { response: "I really like to eat puzzlegrass" }
     ]
 };
 
@@ -124,15 +146,20 @@ const sendMessageButton = $("sendMessageButton")[0];
 
 // called when 'enter' key or 'send' button is pressed
 async function sendMessage() {
-    const response = currentResponder.generateResponse(userInput.value);
+    const { response, image } = currentResponder.generateResponse(userInput.value);
 
     Message.send("YOU", userInput.value, "right");
+    // Message.sendImage("./ass");
     userInput.value = "";
 
     // waits 1000ms before sending response.
     await new Promise(_ => setTimeout(_, 750));
 
     Message.send(currentResponder.name, response, "left");
+
+    if (image) {
+        Message.sendImage(image, "left");
+    }
 }
 
 sendMessageButton.addEventListener("click", sendMessage);
@@ -179,7 +206,7 @@ const suggestions = document.getElementsByClassName("suggestions")[0];
 
 for (const suggestion of suggestions.children) {
     suggestion.addEventListener("click", async () => {
-        const response = currentResponder.generateResponse(suggestion.innerText);
+        const { response, image } = currentResponder.generateResponse(suggestion.innerText);
 
         Message.send("YOU", suggestion.innerText, "right");
 
@@ -187,6 +214,10 @@ for (const suggestion of suggestions.children) {
         await new Promise(_ => setTimeout(_, 750));
 
         Message.send(currentResponder.name, response, "left");
+
+        if (image) {
+            Message.sendImage(image, "left");
+        }
 
         userInput.focus();
     });
@@ -196,7 +227,7 @@ const keywords = document.getElementsByClassName("list")[0];
 
 for (const keyword of keywords.children) {
     keyword.addEventListener("click", async () => {
-        const response = currentResponder.generateResponse(keyword.innerText);
+        const { response, image } = currentResponder.generateResponse(keyword.innerText);
 
         Message.send("YOU", keyword.innerText, "right");
 
@@ -204,6 +235,10 @@ for (const keyword of keywords.children) {
         await new Promise(_ => setTimeout(_, 750));
 
         Message.send(currentResponder.name, response, "left");
+
+        if (image) {
+            Message.sendImage(image, "left");
+        }
 
         userInput.focus();
     });

@@ -31,12 +31,18 @@ body {
     background: linear-gradient(to right top, #ff000b, #cd0051, #7e0c65, #2f1e4e, #050d1c);
     text-align: center;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-direction: column;
 }
 
 main h1 {
     margin-bottom: 10px;
+}
+
+main img {
+    margin: 15px 0 0 0;
+    width: 25%;
+    border-radius: 10px;
 }
 
 h6 {
