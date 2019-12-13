@@ -1,0 +1,77 @@
+@font-face {
+    font-family: "Roboto Black";
+    src: url("/assets/roboto_black.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto Black";
+    background: #cbcbcb;
+}
+
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+img {
+    margin: 30px auto;
+    width: 300px;
+    border-radius: 10px;
+    animation: appearImage 0.3s ease-in-out;
+}
+
+h1 {
+    cursor: pointer;
+    animation: appearHeading 1s ease-in-out forwards;
+}
+
+h1::after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    transform: translate(-50%, -50%);
+    background: black;
+    transition: width 0.3s ease-in-out;
+}
+
+h1:hover::after {
+    width: 50%;
+}
+
+/*
+    * === KEYFRAMES ===
+*/
+
+@keyframes appearHeading {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+        font-size: 0.8em;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+        font-size: 1.2em;
+    }
+}
+
+@keyframes appearImage {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,82 @@
+/*
+    * === FONT FACES ===
+*/
+
+@font-face {
+    font-family: "Roboto Regular";
+    src: url("/assets/roboto_regular.ttf");
+}
+
+@font-face {
+    font-family: "Roboto Black";
+    src: url("/assets/roboto_black.ttf");
+}
+
+@font-face {
+    font-family: "Roboto Condensed Regular";
+    src: url("/assets/roboto_condensed_regular.ttf");
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    height: 100vh;
+    color: #ffffff;
+    font-family: "Roboto Regular";
+    background: linear-gradient(to right top, #ff000b, #cd0051, #7e0c65, #2f1e4e, #050d1c);
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+main h1 {
+    margin-bottom: 10px;
+}
+
+h6 {
+    font-family: "Roboto Condensed Regular";
+    font-weight: normal;
+}
+
+footer {
+    font-size: 2em;
+    opacity: 0;
+    color: #ffffff44;
+}
+
+/*
+    * === CLOSE BUTTON ===
+*/
+
+.closeBtn {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    cursor: pointer;
+    font-size: 2em;
+    transition: color 0.2s ease-in-out;
+    z-index: 1;
+}
+
+.closeBtn:hover {
+    color: #ff6961;
+}
+
+/*
+    * === KEY FRAMES ===
+*/
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

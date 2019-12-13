@@ -1,0 +1,282 @@
+/*
+    * === FONT FACES ===
+*/
+
+@font-face {
+    font-family: "Roboto Regular";
+    src: url("/assets/roboto_regular.ttf");
+}
+
+@font-face {
+    font-family: "Roboto Black";
+    src: url("/assets/roboto_black.ttf");
+}
+
+@font-face {
+    font-family: "Roboto Condensed Regular";
+    src: url("/assets/roboto_condensed_regular.ttf");
+}
+
+/*
+    * === DEFAULTS ===
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    height: 100vh;
+    color: #ffffff;
+    font-family: "Roboto Regular";
+    background: linear-gradient(to right top, #ff000b, #cd0051, #7e0c65, #2f1e4e, #050d1c);
+}
+
+img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+h6 {
+    font-family: "Roboto Condensed Regular";
+    font-weight: normal;
+}
+
+/*
+    * === CLOSE BUTTON ===
+*/
+
+.closeBtn {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    cursor: pointer;
+    font-size: 2em;
+    transition: color 0.2s ease-in-out;
+    z-index: 1;
+}
+
+.closeBtn:hover {
+    color: #ff6961;
+}
+
+/*
+    * === COUNTDOWN ===
+*/
+
+.countdown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #ffffff44;
+    font-size: 2em;
+    opacity: 0;
+}
+
+.countdown p {
+    font-size: 5em;
+}
+
+/*
+    * === SIDEBAR ===
+*/
+
+.sidebar {
+    position: fixed;
+    height: 100%;
+    background: #ffffff22;
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+}
+
+/* PROFILE ICON */
+.sidebar img {
+    margin-bottom: 20px;
+}
+
+/* KEYWORDS */
+.sidebar .list p {
+    margin: 20px 0;
+    padding: 20px 0;
+    border-radius: 10px;
+    background: #ffffff22;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    transition-property: background, transform;
+}
+
+.sidebar .list p:hover {
+    background: #ffffff44;
+    transform: scale(0.95);
+}
+
+/*
+    * === MAIN ===
+*/
+
+main {
+    position: relative;
+    margin-left: 250px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.chat {
+    position: relative;
+    padding: 100px 50px;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.chat::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chat::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+.chat::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #ffffff22;
+}
+
+.chat .state {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff44;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.5em;
+}
+
+.message-wrapper {
+    margin-bottom: 20px;
+}
+
+/* moves messages sent by user to the right. */
+[data-side="right"] {
+    text-align: right;
+    position: relative;
+}
+
+.message-wrapper .message {
+    margin-top: 5px;
+    padding: 10px;
+    display: inline-block;
+    background: #ffffff22;
+    border-radius: 10px;
+    text-align: left;
+    max-width: 50%;
+}
+
+.message-wrapper .sender {
+    font-size: 0.8em;
+    font-family: "Roboto Condensed Regular";
+}
+
+.message-wrapper .timestamp {
+    color: #ffffff99;
+}
+
+/*
+    * === SUGGESTIONS ===
+*/
+
+.suggestion {
+    margin-bottom: 30px;
+    position: relative;
+    padding: 25px 20px;
+    border-radius: 10px;
+    border: 2px solid #ffffff22;
+    cursor: pointer;
+    transition: border 0.2s ease-in-out;
+}
+
+.suggestion:hover {
+    border: 2px solid #ffffff44;
+}
+
+.suggestion::before {
+    content: "SUGGESTION";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    background: #ffffff22;
+    padding: 5px;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+}
+
+/*
+    * === INPUT ===
+*/
+
+.input-wrapper {
+    position: relative;
+    padding: 20px;
+    background: #ffffff22;
+    display: flex;
+}
+
+input {
+    margin-right: 20px;
+    padding: 20px;
+    width: 100%;
+    background: #ffffff22;
+    border: none;
+    color: #ffffff;
+    outline: none;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+    transition-property: background, color;
+}
+
+input::placeholder {
+    color: #ffffff;
+    font-family: "Roboto Black";
+}
+
+input:focus {
+    background: #ffffff33;
+}
+
+.input-wrapper button {
+    background: #ffffff22;
+    border: none;
+    outline: none;
+    padding: 20px;
+    color: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    transition-property: background, transform;
+}
+
+.input-wrapper button:hover {
+    background: #ffffff44;
+    transform: scale(0.95);
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

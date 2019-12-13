@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="style.css"/>
+        <title>Dino Chat</title>
+    </head>
+    <body>
+        <p class="closeBtn">&times;</p>
+
+        <div class="sidebar">
+            <section>
+                <img class="botImage"/>
+                <h6>CHATTING TO</h6>
+                <h1 class="botName"></h1>
+            </section>
+            <section class="suggestions">
+                <div class="suggestion">
+                    <p>What food do you like to eat?</p>
+                </div>
+                <div class="suggestion">
+                    <p>Give me a fun fact?</p>
+                </div>
+            </section>
+            <section>
+                <h3>TYPE YOUR QUESTION WITH THESE KEYWORDS</h3>
+                <div class="list">
+                    <p>Eat</p>
+                    <p>Fun Fact</p>
+                    <p>Save Planet</p>
+                </div>
+            </section>
+        </div>
+
+        <main>
+            <div class="countdown">
+                <h6>CHAT EXPIRING IN</h6>
+                <p id="currentSec">0</p>
+            </div>
+            <section class="chat">
+                <div class="state">
+                    <h6>BEGINNING OF YOUR CONVERSATION WITH</h6>
+                    <h1 class="botName"></h1>
+                </div>
+            </section>
+            <section class="input-wrapper">
+                <input class="userInput" type="text" placeholder="SEND MESSAGE" autofocus/>
+                <button class="sendMessageButton">SEND</button>
+            </section>
+        </main>
+
+        <script src="main.js"></script>
+    </body>
+</html>
