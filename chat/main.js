@@ -106,10 +106,12 @@ const trexResponses = {
             image: "/assets/juicy_meat.jpeg"
         },
         {
-            response: "I prefer to eat meat"
+            response: "I prefer to eat meat",
+            image: "/assets/juicy_meat.jpeg"
         },
         {
-            response: "I really like to eat meat"
+            response: "I really like to eat meat",
+            image: "/assets/juicy_meat.jpeg"
         }
     ]
 };
@@ -120,9 +122,18 @@ const brontoResponses = {
         { response: "I am a Brantosaurus, I can grow upto 90 feet tall" }
     ],
     "eat": [
-        { response: "I eat puzzlegrass" },
-        { response: "I prefer to eat puzzlegrass" },
-        { response: "I really like to eat puzzlegrass" }
+        {
+            response: "I eat puzzlegrass",
+            image: "/assets/grass-16044_640.jpg"
+        },
+        {
+            response: "I prefer to eat puzzlegrass",
+            image: "/assets/grass-16044_640.jpg"
+        },
+        {
+            response: "I really like to eat puzzlegrass",
+            image: "/assets/grass-16044_640.jpg"
+        },
     ]
 };
 
