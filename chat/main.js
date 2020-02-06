@@ -197,7 +197,7 @@ let currentSec = 20;
 const counter = setInterval(() => {
     currentSec -= 1;
 
-    if (currentSec <= 5) {
+    if (currentSec <= 10) {
         countdown.style.opacity = 1;
     } else {
         countdown.style.opacity = 0;
@@ -210,8 +210,8 @@ const counter = setInterval(() => {
     currentSecond.innerText = currentSec;
 }, 1000);
 
-document.addEventListener("mousemove", () => currentSec = 10);
-document.addEventListener("keypress", () => currentSec = 10);
+document.addEventListener("mousemove", () => currentSec = 20);
+document.addEventListener("keypress", () => currentSec = 20);
 
 const suggestions = document.getElementsByClassName("suggestions")[0];
 
